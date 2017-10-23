@@ -4,7 +4,7 @@
 
 // Command firestore_snippets contains runnable snippet code for Cloud Spanner.
 package main
-// go run main.go auth.go set.go word.go
+// go run main.go auth.controller.go set.controller.go word.controller.go
 import (
 	//"fmt"
 	"github.com/gin-gonic/gin"
@@ -13,40 +13,24 @@ import (
 	"cloud.google.com/go/firestore"
 
 	//"os"
+	"projects/camera-dictionary/controllers"
 	"log"
 	"github.com/golang/protobuf/ptypes/any"
 )
 
 // [START fs_class_definition]
 // City represents a city.
-type City struct {
-	Name       string `firestore:"name,omitempty"`
-	State      string `firestore:"state,omitempty"`
-	Country    string `firestore:"country,omitempty"`
-	Capital    bool   `firestore:"capital,omitempty"`
-	Population int64  `firestore:"population,omitempty"`
-}
+//type City struct {
+//	Name       string `firestore:"name,omitempty"`
+//	State      string `firestore:"state,omitempty"`
+//	Country    string `firestore:"country,omitempty"`
+//	Capital    bool   `firestore:"capital,omitempty"`
+//	Population int64  `firestore:"population,omitempty"`
+//}
 
-type User struct {
-	Username       string `firestore:"username,omitempty"`
-	Password      string `firestore:"password,omitempty"`
-}
 
-type Set struct {
-	Id       string `firestore:"-"`
-	UserId       string `firestore:"user_id,omitempty"`
-	Name      string `firestore:"name,omitempty"`
-}
 
-type Word struct {
-	Id       string `firestore:"-"`
-	SetId       string `firestore:"set_id,omitempty"`
-	Type      string `firestore:"type,omitempty"`
-	Content      string `firestore:"content,omitempty"`
-	Language     string `firestore:"language,omitempty"`
-	Translation      string `firestore:"translation,omitempty"`
-	Pronunciation      string `firestore:"pronunciation,omitempty"`
-}
+
 
 type MyError struct {
 	error
@@ -74,22 +58,22 @@ func main() {
 
 	auth := router.Group("/auth")
 	{
-		auth.POST("/login", func(c *gin.Context) {Login(c ,ctx ,client )})
-		auth.POST("/register", func(c *gin.Context) {Register(c, ctx, client)})
+		auth.POST("/login", func(c *gin.Context) {controllers.Login(c ,ctx ,client )})
+		auth.POST("/register", func(c *gin.Context) {controllers.Register(c, ctx, client)})
 	}
 	api := router.Group("/api")
 	{
-		api.POST("/sets", func(c *gin.Context) {CreateSet(c ,ctx ,client )})
-		api.GET("/sets", func(c *gin.Context) {ReadSets(c, ctx, client)})
-		api.GET("/sets/:setId", func(c *gin.Context) {ReadSet(c, ctx, client)})
-		api.PATCH("/sets/:setId", func(c *gin.Context) {UpdateSet(c, ctx, client)})
-		api.DELETE("/sets/:setId", func(c *gin.Context) {DeleteSet(c, ctx, client)})
+		api.POST("/sets", func(c *gin.Context) {controllers.CreateSet(c ,ctx ,client )})
+		api.GET("/sets", func(c *gin.Context) {controllers.ReadSets(c, ctx, client)})
+		api.GET("/sets/:setId", func(c *gin.Context) {controllers.ReadSet(c, ctx, client)})
+		api.PATCH("/sets/:setId", func(c *gin.Context) {controllers.UpdateSet(c, ctx, client)})
+		api.DELETE("/sets/:setId", func(c *gin.Context) {controllers.DeleteSet(c, ctx, client)})
 
-		api.POST("/words", func(c *gin.Context) {CreateWord(c ,ctx ,client )})
-		api.GET("/words", func(c *gin.Context) {ReadWords(c, ctx, client)})
-		api.GET("/words/:wordId", func(c *gin.Context) {ReadWord(c, ctx, client)})
-		api.PATCH("/words/:wordId", func(c *gin.Context) {UpdateWord(c, ctx, client)})
-		api.DELETE("/words/:wordId", func(c *gin.Context) {DeleteWord(c, ctx, client)})
+		api.POST("/words", func(c *gin.Context) {controllers.CreateWord(c ,ctx ,client )})
+		api.GET("/words", func(c *gin.Context) {controllers.ReadWords(c, ctx, client)})
+		api.GET("/words/:wordId", func(c *gin.Context) {controllers.ReadWord(c, ctx, client)})
+		api.PATCH("/words/:wordId", func(c *gin.Context) {controllers.UpdateWord(c, ctx, client)})
+		api.DELETE("/words/:wordId", func(c *gin.Context) {controllers.DeleteWord(c, ctx, client)})
 	}
 	router.Run()
 
