@@ -1,0 +1,18 @@
+package: projects/camera-dictionary
+import:
+- package: cloud.google.com/go
+  subpackages:
+  - firestore
+- package: github.com/gin-gonic/gin
+- package: github.com/golang/protobuf
+  subpackages:
+  - ptypes/any
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: google.golang.org/api
+  subpackages:
+  - iterator
+- package: google.golang.org/grpc
+  subpackages:
+  - status
