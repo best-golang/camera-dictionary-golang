@@ -21,7 +21,7 @@ import (
 	"fmt"
 	//"go/doc"
  	//"encoding/json"
- 	"projects/camera-dictionary/modals"
+ 	"camera-dictionary-golang/modals"
 )
 func Login(c *gin.Context, ctx context.Context, client *firestore.Client) error{
 	users := client.Collection("users")

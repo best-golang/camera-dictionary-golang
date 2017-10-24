@@ -29,7 +29,7 @@ import (
 	//"bytes"
 	//"bytes"
 	//"strings"
-	"projects/camera-dictionary/modals"
+	"camera-dictionary-golang/modals"
 )
 
 

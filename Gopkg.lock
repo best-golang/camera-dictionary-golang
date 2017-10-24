@@ -41,7 +41,7 @@
   branch = "master"
   name = "github.com/ugorji/go"
   packages = ["codec"]
-  revision = "6ac03ac41984930e078e8cba751fb0825f17cc4f"
+  revision = "acb6ae458c7e13d349a39dad54bc5fa9b52de34c"
 
 [[projects]]
   branch = "master"

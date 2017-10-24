@@ -13,7 +13,7 @@ import (
 	"cloud.google.com/go/firestore"
 
 	//"os"
-	"projects/camera-dictionary/controllers"
+	"camera-dictionary-golang/controllers"
 	"log"
 	"github.com/golang/protobuf/ptypes/any"
 )
