@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "calm-analogy-183605",
+  "private_key_id": "bfd0bc0c8bf1e64189a254b4009c8a4af87fed4e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCssh7n6sGfbhkw\n1cIUTH7XzCKnPqUaerFrwzE3GIr4rtKeKVj4SQNcq7ZssW1ePEEqrZGjW0GbBn9+\n396LZuBfqe5vj6ZSI2YLzwe8iw5hoKjkGTzSWN4d5Rwq2MgAodAGTee78HKWJTBs\npyIJJNKwMqPPTbdfTIK0sMTnz+gQp7Cb70ij+HQEo7qLFq9HZPGS6EKy4TYzeZUD\nFN1aG0v6I9jaM1WIJZmO1PMGknSsdmqENOsS2e7Xu9oljPtOD4jKAd1rA/tfvcl7\n0Y4GGf9gnjlpe+rqFLlwPGcuJlrSTIM5u5iRnLcE539ue6OrnEoV/qDvOfP0TgMd\nAFgWv5SnAgMBAAECggEABPTj0DI7tnC5hl5MQLrlVRpF0FkK8hSdbQNgMT2iF3sl\nDmcPZ6jo0MsY5Eu/YNoH4Mq0iGTBIEryc9jHEWc1f2loL4mG84qSjjo19aJkGkc7\nMbjLtxnX3jHKOiyYqPP7/YJU6V8AWvDcT/IIFw0YgvghHX0Ui0at5bPBIwojlf6+\nBSO+7QZdwm9Im0bGniSCgqfJDIf+2IgCE/f/XRD+vbiCUxURz/ZTL0ivH1JJKInZ\nOaEtaQG2Hx4JpjJy8mSc0ruViGmGcB+EQr4Oh0uTn5w8fZWP+Q9lZlZX2x3V74jC\nAMHPO6taCXX6b1vmWPP1Hk3nW3gfE3MnQxEgzd7h0QKBgQDksZUYnG67qVthzuhs\nYeagiThT0PBcQiLfnEapahTSRpMNUE03oxdqKagAzEnzVJIuQ6Cs2xNy/TNECLyR\nhYZVOzU1fyBzQ79FWedb9H4sFhR1RzEz/Nel87iuj0CDEWDYBHC2eW3jmS/g6eEO\nQQRc3Q1ICqHqb2KbAu0cdepm2QKBgQDBUN2mMY1sk8HgWS+AJs2SnVApFuB34W9l\nPjzw+AGaIaJ7S+u2DDufL0x3McokI+a3oL7WE/cNo0GTOPkWPaPY3qIoQx6eV1bK\nmIyF/kS7212FR/vWjYL3wjtKdHouq3V2d96vzyenFBF1PASk0MLsgZ2xcR4nypIH\nlBoOK/enfwKBgQDRLiGLPmMG4dTFNQVhRXc3NexAtid0q8XMNNxpT6+12nndPqsy\njcn4ABw8hp/Jo3yGNrN8CHLUxgajXz5j+PczdJGp2hsrczc7zw0RDiRuXM/fqfu2\naroxgClX+Y3vlPC5Be626YD7In4pwqNpb0z3R/ZDA/6wOau+z8FkO/LomQKBgBVC\n953XxV4zwhcSuA64NdPySWa7hWSp/r574ef+3u481MoKx5n2LniLkzVo3HqtGCsK\nGvMgrwNo+UVf9sVjcingEqWq/CseIAWYUZxLIvQmZFrMV/55AfaN/kdqGCYZ5Ylq\nFavwdMQDiQgD2d7mtwmcF+P0NQTbWsRKnbMBUvOxAoGAKMKNFvOtQN1W/NHhjt2m\ncsjA4IsAic2+l86V7vqFRYNDQ2jRKAFO+qj09TkKCzbl7u32+nAvEf2QeEH/N9K3\n1rbao8SV2veHbKMU9koHKpSYju8EeHqp/Z9K7GGELg18msRzzjZNNps790TWCA+J\n7z4yNQjjReVp9G7hymPZvxY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "camera-dictionary@calm-analogy-183605.iam.gserviceaccount.com",
+  "client_id": "104875651252526931707",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/camera-dictionary%40calm-analogy-183605.iam.gserviceaccount.com"
+}
