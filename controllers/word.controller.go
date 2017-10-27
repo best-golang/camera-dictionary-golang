@@ -148,11 +148,11 @@ func ReadWordsFile(c *gin.Context, ctx context.Context, client *firestore.Client
 		var _filepath string
 		_, filename, _, _ := runtime.Caller(1)
 		if env == "production" {
+			_filepath = filepath.Join(filepath.Dir(filename), "/src/camera-dictionary-golang/static/"+c.Query("set_id") + ".csv")
+			log.Println("Running api server in dev mode")
+		} else {
 			_filepath = filepath.Join(filepath.Dir(filename), "/static/"+c.Query("set_id") + ".csv")
 			log.Println("Running api server in production mode")
-		} else {
-			_filepath = filepath.Join(filepath.Dir(filename), "../src/camera-dictionary-golang/static/"+c.Query("set_id") + ".csv")
-			log.Println("Running api server in dev mode")
 		}
 
 		log.Print(_filepath)
