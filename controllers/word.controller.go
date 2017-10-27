@@ -120,7 +120,20 @@ func ReadWordsFile(c *gin.Context, ctx context.Context, client *firestore.Client
 			"message": "Not found!",
 		})
 	} else {
-		var  path = "static/" +  c.Query("set_id") + ".csv"
+
+
+		env := os.Getenv("APP_ENV")
+		var path string
+		_, filename, _, _ := runtime.Caller(1)
+		if env == "production" {
+			path = filepath.Join(filepath.Dir(filename), "/src/camera-dictionary-golang/static/"+c.Query("set_id") + ".csv")
+			log.Println("Running api server in production mode")
+		} else {
+			path = filepath.Join(filepath.Dir(filename), "/static/"+c.Query("set_id") + ".csv")
+			log.Println("Running api server in dev mode")
+		}
+
+		//var  path = "static/" +  c.Query("set_id") + ".csv"
 		file, err := os.Create(path)
 		checkError("Cannot create file", err)
 		defer file.Close()
@@ -144,24 +157,15 @@ func ReadWordsFile(c *gin.Context, ctx context.Context, client *firestore.Client
 		//	"resources": Words,
 		//})
 		//targetPath := filepath.Abs(path)
-		env := os.Getenv("APP_ENV")
-		var _filepath string
-		_, filename, _, _ := runtime.Caller(1)
-		if env == "production" {
-			_filepath = filepath.Join(filepath.Dir(filename), "/src/camera-dictionary-golang/static/"+c.Query("set_id") + ".csv")
-			log.Println("Running api server in dev mode")
-		} else {
-			_filepath = filepath.Join(filepath.Dir(filename), "/static/"+c.Query("set_id") + ".csv")
-			log.Println("Running api server in production mode")
-		}
 
-		log.Print(_filepath)
+
+		log.Print(path)
 		log.Print(env)
 		c.Header("Content-Description", "File Transfer")
 		c.Header("Content-Transfer-Encoding", "binary")
 		c.Header("Content-Disposition", "attachment; filename="+ c.Query("set_id") + ".csv" )
 		c.Header("Content-Type", "application/octet-stream")
-		defer c.File(_filepath)
+		defer c.File(path)
 		///Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/result.csv
 		///Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/
 		//c.File("/Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/result.csv")
