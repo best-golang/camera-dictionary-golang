@@ -42,6 +42,7 @@ func CreateSet(c *gin.Context, ctx context.Context, client *firestore.Client) er
 		c.JSON(http.StatusInternalServerError, gin.H{"status": http.StatusInternalServerError, "message": "Something happens!"})
 		return nil
 	}
+	log.Printf("fdaff")
 	c.JSON(http.StatusCreated, gin.H{
 		"status": http.StatusCreated,
 		"message": "Set item created successfully!",

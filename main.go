@@ -16,6 +16,11 @@ import (
 	"camera-dictionary-golang/controllers"
 	"log"
 	"github.com/golang/protobuf/ptypes/any"
+	//"net/http"
+	//"path/filepath"
+	//"os"
+	//"fmt"
+	//"io/ioutil"
 )
 
 // [START fs_class_definition]
@@ -41,6 +46,26 @@ type MyError struct {
 // [END fs_class_definition]
 
 func main() {
+
+	//dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//fmt.Println(dir)
+	//
+	//http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("/Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static"))))
+	////fs := http.FileServer(http.Dir("/Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static"))
+	////http.Handle("/static", http.StripPrefix("/static/", fs))
+	//
+	//files, err := ioutil.ReadDir("/Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//for _, f := range files {
+	//	fmt.Println(f.Name())
+	//}
+
 	ctx := context.Background()
 
 	//projectID := os.Getenv("GCLOUD_PROJECT")
@@ -55,6 +80,8 @@ func main() {
 	}
 
 	router := gin.Default()
+
+	router.Static("/static", "./static")
 
 	auth := router.Group("/auth")
 	{
@@ -71,6 +98,7 @@ func main() {
 
 		api.POST("/words", func(c *gin.Context) {controllers.CreateWord(c ,ctx ,client )})
 		api.GET("/words", func(c *gin.Context) {controllers.ReadWords(c, ctx, client)})
+		api.GET("/words-file", func(c *gin.Context) {controllers.ReadWordsFile(c, ctx, client)})
 		api.GET("/words/:wordId", func(c *gin.Context) {controllers.ReadWord(c, ctx, client)})
 		api.PATCH("/words/:wordId", func(c *gin.Context) {controllers.UpdateWord(c, ctx, client)})
 		api.DELETE("/words/:wordId", func(c *gin.Context) {controllers.DeleteWord(c, ctx, client)})
