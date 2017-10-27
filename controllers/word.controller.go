@@ -156,6 +156,7 @@ func ReadWordsFile(c *gin.Context, ctx context.Context, client *firestore.Client
 		}
 
 		log.Print(_filepath)
+		log.Print(env)
 		c.Header("Content-Description", "File Transfer")
 		c.Header("Content-Transfer-Encoding", "binary")
 		c.Header("Content-Disposition", "attachment; filename="+ c.Query("set_id") + ".csv" )
