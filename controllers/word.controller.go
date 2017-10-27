@@ -30,6 +30,10 @@ import (
 	//"bytes"
 	//"strings"
 	"camera-dictionary-golang/modals"
+	"os"
+	"encoding/csv"
+	"path/filepath"
+	"runtime"
 )
 
 func CreateWord(c *gin.Context, ctx context.Context, client *firestore.Client) error{
@@ -85,6 +89,72 @@ func ReadWords(c *gin.Context, ctx context.Context, client *firestore.Client) er
 			"message": "Read words successfully!",
 			"resources": Words,
 		})
+	}
+	return nil
+}
+
+func ReadWordsFile(c *gin.Context, ctx context.Context, client *firestore.Client) error{
+	wordsRef := client.Collection("words")
+	iter := wordsRef.Where("set_id", "==", c.Query("set_id")).Documents(ctx)
+	var x int = 0
+	var Words = []modals.Word{}
+	for {
+		dsnap, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"status": http.StatusInternalServerError, "message": "Something happens!"})
+			return nil
+		}
+		x = x + 1
+		var s modals.Word
+		dsnap.DataTo(&s)
+		s.Id = dsnap.Ref.ID
+		Words = append(Words, s)
+	}
+
+	if x == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"status": http.StatusNotFound,
+			"message": "Not found!",
+		})
+	} else {
+		var  path = "static/" +  c.Query("set_id") + ".csv"
+		file, err := os.Create(path)
+		checkError("Cannot create file", err)
+		defer file.Close()
+
+		writer := csv.NewWriter(file)
+
+
+		for _, value := range Words {
+			var data = []string{}
+			data = append(data,value.Content,value.Language, value.Translation, value.Pronunciation )
+			err := writer.Write(data)
+			checkError("Cannot write to file", err)
+		}
+		writer.Flush()
+		//c.Redirect(http.StatusMovedPermanently, c.Request.Host + c.Request.URL.Path + path)
+
+		//Words
+		//c.JSON(http.StatusCreated, gin.H{
+		//	"status": http.StatusCreated,
+		//	"message": "Read words successfully!",
+		//	"resources": Words,
+		//})
+		//targetPath := filepath.Abs(path)
+		_, filename, _, _ := runtime.Caller(1)
+		_filepath := filepath.Join(filepath.Dir(filename), "/static/"+c.Query("set_id") + ".csv")
+		log.Print(_filepath)
+		c.Header("Content-Description", "File Transfer")
+		c.Header("Content-Transfer-Encoding", "binary")
+		c.Header("Content-Disposition", "attachment; filename="+ c.Query("set_id") + ".csv" )
+		c.Header("Content-Type", "application/octet-stream")
+		defer c.File(_filepath)
+		///Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/result.csv
+		///Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/
+		//c.File("/Users/thanhdatvo/Desktop/gogo/src/camera-dictionary-golang/static/result.csv")
 	}
 	return nil
 }
@@ -161,4 +231,8 @@ func DeleteWord(c *gin.Context, ctx context.Context, client *firestore.Client) e
 }
 
 
-
+func checkError(message string, err error) {
+	if err != nil {
+		log.Fatal(message, err)
+	}
+}
